@@ -12,16 +12,13 @@ const port = 3000
 
 
 app.get('/', (req, res) => {
-  res.json({ msg: 'Hello World3!' });
+  res.json({ msg: 'Hello World!' });
 });
 
 N = 10;
 
-
-
 // get states
 app.get('/getstates/:filter', (req, res) => {
-
   source = [
     { "key": 1, "label": "Alabama" },
     { "key": 2, "label": "Alaska" },
@@ -74,14 +71,12 @@ app.get('/getstates/:filter', (req, res) => {
     { "key": 49, "label": "Wisconsin" },
     { "key": 50, "label": "Wyoming" },
   ];
-
   result = getFiltered(source, req.params.filter);
   res.json(result);
 })
 
 // get cities
 app.get('/getcities/:filter', (req, res) => {
-
   source = [
     { "key": 100, "label": "Bratislava" },
     { "key": 101, "label": "Bratislava I" },
@@ -171,8 +166,6 @@ app.get('/getcities/:filter', (req, res) => {
 
 // get colors
 app.get('/getcolors/:filter', (req, res) => {
-
-
   source = [
     { "key": 1, "label": "AliceBlue" },
     { "key": 2, "label": "AntiqueWhite" },
