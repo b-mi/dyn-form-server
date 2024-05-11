@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
   res.json({ msg: 'Hello World!' });
 });
 
-N = 10;
+N = 5;
 
 // get states
 app.get('/getstates/:filter', (req, res) => {
