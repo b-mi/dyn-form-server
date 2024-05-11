@@ -315,23 +315,25 @@ app.get('/getcolors/:filter', (req, res) => {
 
 
 function getFiltered(source, filter) {
-  if (!filter)
-    filter = '-';
+  if (filter === '-')
+    filter = '';
   filter = decodeURIComponent(filter);
 
-  if (!filter || filter === '-') {
-    return source;
-  }
-
   console.log('getFiltered', filter);
-
 
   let result = [];
   const normFilter = removeDiacritics(filter)
 
   let cnt = 0;
   for (const item of source) {
-    if (removeDiacritics(item.label).includes(normFilter)) {
+    if (!filter) {
+      result.push(item);
+      cnt++;
+      if (cnt >= N) {
+        break;
+      }
+    }
+    else if (removeDiacritics(item.label).includes(normFilter)) {
       result.push(item);
       cnt++;
       if (cnt >= N) {
