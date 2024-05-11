@@ -1,7 +1,7 @@
 const config = require('config');
 const express = require('express')
 const cors = require('cors');
-const fs = require('node:fs')
+const fs = require('node:fs');
 const app = express()
 app.use(cors());
 app.use(express.json());
@@ -323,6 +323,9 @@ function getFiltered(source, filter) {
     return source;
   }
 
+  console.log('getFiltered', filter);
+
+
   let result = [];
   const normFilter = removeDiacritics(filter)
 
@@ -346,7 +349,7 @@ function getFiltered(source, filter) {
 app.put('/save-json/:id', (req, res) => {
   const id = req.params.id;
   const body = req.body;
-  const formPath = body.formPath;
+  const formPath = body.apiFullFormPath;
   const data = body.data;
   const pth = formPath + '/' + id + '.json';
   console.log('save-json', pth);
