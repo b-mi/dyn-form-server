@@ -315,11 +315,11 @@ app.get('/getcolors/:filter', (req, res) => {
 
 
 function getFiltered(source, filter) {
+  console.log('getFiltered', filter);
   if (filter === '-')
     filter = '';
   filter = decodeURIComponent(filter);
 
-  console.log('getFiltered', filter);
 
   let result = [];
   const normFilter = removeDiacritics(filter)
@@ -374,3 +374,62 @@ function removeDiacritics(str) {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   return str;
 }
+
+
+app.get('/get-sample-data', (req, res) => {
+  const data = {
+    "company": "Google",
+    "firstName": "John",
+    "lastName": "Smith",
+    "address": "132, My Street, Kingston, New York 12401",
+    "state": {
+      "key": 5,
+      "label": "California"
+    },
+    "color": {
+      "key": 4,
+      "label": "Aquamarine"
+    },
+    "postal_code": 12401,
+    "shipping": "PS",
+    "state_list": [
+      "AK",
+      "AS",
+      "CA"
+    ],
+    "check1": true,
+    "car_name": "Ferrari",
+    "car_date1": "2024-05-21T22:00:00.000Z",
+    "car_date2": "2024-05-28T22:00:00.000Z",
+    "car_name2": "Ford Mustang",
+    "car_age2": 1,
+    "check2": true,
+    "sex": "W",
+    "appearance": "I",
+    "many_colors": [
+      {
+        "key": 5,
+        "label": "Azure"
+      },
+      {
+        "key": 32,
+        "label": "DarkRed"
+      },
+      {
+        "key": 18,
+        "label": "CornflowerBlue"
+      }
+    ],
+    "city": {
+      "key": 800,
+      "label": "Košice"
+    },
+    "pcolor": [
+      "BL",
+      "O",
+      "M",
+      "G"
+    ]
+  }
+  res.json(data);
+});
